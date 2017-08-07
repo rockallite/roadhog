@@ -306,10 +306,11 @@ export function getCommonPlugins({ config, paths, appBuild, NODE_ENV }) {
     ]));
   }
   if (config.multipage) {
-    let commonFilename = config.hash ? 'common.[chunkhash].js' : 'common.js';
+    // Support hash
+    const name = config.hash ? 'common.[chunkhash]' : 'common';
     ret.push(new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      filename: commonFilename,
+      filename: `${name}.js`,
     }));
   }
 
